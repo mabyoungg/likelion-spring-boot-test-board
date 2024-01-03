@@ -38,3 +38,4 @@ out/
 
 ### Custom ###
 sbb_dev.mv.db
+sbb_dev.trace.db
