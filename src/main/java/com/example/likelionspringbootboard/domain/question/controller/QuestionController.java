@@ -1,11 +1,14 @@
 package com.example.likelionspringbootboard.domain.question.controller;
 
+import com.example.likelionspringbootboard.domain.question.dto.QuestionForm;
 import com.example.likelionspringbootboard.domain.question.entity.Question;
 import com.example.likelionspringbootboard.domain.question.repository.QuestionRepository;
 import com.example.likelionspringbootboard.domain.question.service.QuestionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,13 +35,16 @@ public class QuestionController {
     }
 
     @GetMapping("/create")
-    public String questionCreate() {
+    public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
     @PostMapping("/create")
-    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
-        this.questionService.create(subject, content);
-        return "redirect:/question/list"; // 질문 저장후 질문목록으로 이동
+    public String questionCreate(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+        return "redirect:/question/list";
     }
 }
