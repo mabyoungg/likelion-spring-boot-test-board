@@ -1,5 +1,6 @@
 package com.example.likelionspringbootboard.domain.question.controller;
 
+import com.example.likelionspringbootboard.domain.answer.dto.AnswerForm;
 import com.example.likelionspringbootboard.domain.question.dto.QuestionForm;
 import com.example.likelionspringbootboard.domain.question.entity.Question;
 import com.example.likelionspringbootboard.domain.question.repository.QuestionRepository;
@@ -28,7 +29,7 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = questionService.getQuestion(id);
         model.addAttribute("question",question);
         return "question_detail";
