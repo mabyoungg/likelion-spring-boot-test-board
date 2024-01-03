@@ -1,4 +1,4 @@
-package com.example.likelionspringbootboard.domain.home;
+package com.example.likelionspringbootboard.domain.home.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,5 +11,10 @@ public class HomeController {
     @ResponseBody
     public String index() {
         return "hi";
+    }
+
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/question/list";
     }
 }
