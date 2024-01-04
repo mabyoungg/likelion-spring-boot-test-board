@@ -1,4 +1,4 @@
-package com.example.likelionspringbootboard.domain.exception;
+package com.example.likelionspringbootboard.global.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,6 +1,7 @@
 package com.example.likelionspringbootboard.domain.question.service;
 
-import com.example.likelionspringbootboard.domain.exception.DataNotFoundException;
+import com.example.likelionspringbootboard.domain.user.entity.SiteUser;
+import com.example.likelionspringbootboard.global.exception.DataNotFoundException;
 import com.example.likelionspringbootboard.domain.question.entity.Question;
 import com.example.likelionspringbootboard.domain.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,11 +37,12 @@ public class QuestionService {
         }
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser user) {
         Question q = new Question();
         q.setSubject(subject);
         q.setContent(content);
         q.setCreateTime(LocalDateTime.now());
+        q.setAuthor(user);
         this.questionRepository.save(q);
     }
 }
